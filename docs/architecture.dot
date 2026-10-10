@@ -1,0 +1,20 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.45", ranksep="0.7"];
+  node [shape=box, style="rounded,filled", fillcolor="#f6faf7", color="#5e8d70", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+  edge [color="#5e8d70", fontname="Arial", fontsize=9];
+  ui [label="Browser Prototype\nHTML / CSS / JavaScript\n(role-aware UI)"];
+  api [label="FastAPI REST Layer\nvalidation + endpoints\nrole checks"];
+  rules [label="Domain / Business Rules\nseverity classification\nquarantine transitions\nbooster due dates\noutbreak rule"];
+  orm [label="SQLAlchemy ORM\nmodels + persistence"];
+  db [label="Prototype DB\nSQLite (default)"];
+  mysql [label="Target DB\nMySQL", style="rounded,dashed,filled", fillcolor="#fbfcfb"];
+  audit [label="Audit Log\nimportant changes"];
+  weather [label="Weather API\nplanned next iteration", style="rounded,dashed,filled", fillcolor="#fbfcfb"];
+  ui -> api [label="HTTP/JSON"];
+  api -> rules;
+  rules -> orm;
+  orm -> db;
+  orm -> mysql [style=dashed, label="DATABASE_URL"];
+  rules -> audit;
+  weather -> api [style=dashed, label="forecast data"];
+}
